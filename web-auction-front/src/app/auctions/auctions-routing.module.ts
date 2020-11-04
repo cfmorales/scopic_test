@@ -5,11 +5,13 @@ import {ViewAllAuctionsComponent} from './view-all-auctions/view-all-auctions.co
 import {ViewAllByNameComponent} from './view-all-by-name/view-all-by-name.component';
 import {ViewAllByDescriptionComponent} from './view-all-by-description/view-all-by-description.component';
 import {ViewAuctionComponent} from './view-auction/view-auction.component';
+import {AuthenticatedGuard} from '../guards/authenticated.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: AuctionsComponent,
+    canActivate: [AuthenticatedGuard],
     children: [
       {path: '', component: ViewAllAuctionsComponent},
       {path: 'name', pathMatch: 'full', component: ViewAllByNameComponent},

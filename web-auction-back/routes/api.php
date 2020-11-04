@@ -18,4 +18,5 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::get('user','UserController@user')->middleware('auth:api');
+Route::get('user','UserConstroller@user')->middleware('auth:api');
+Route::get('all_articles','ArticleController@getAll')->middleware('auth:api');

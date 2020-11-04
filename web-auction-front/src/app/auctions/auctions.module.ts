@@ -10,6 +10,7 @@ import { ViewAllByNameComponent } from './view-all-by-name/view-all-by-name.comp
 import { ViewAllByDescriptionComponent } from './view-all-by-description/view-all-by-description.component';
 import { ViewAuctionComponent } from './view-auction/view-auction.component';
 import { ViewAllAuctionsComponent } from './view-all-auctions/view-all-auctions.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -21,10 +22,11 @@ import { ViewAllAuctionsComponent } from './view-all-auctions/view-all-auctions.
     ViewAllByDescriptionComponent,
     ViewAuctionComponent,
     ViewAllAuctionsComponent],
-  imports: [
-    CommonModule,
-    AuctionsRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        AuctionsRoutingModule,
+        NgxPaginationModule
+    ]
 })
 export class AuctionsModule {
 }
