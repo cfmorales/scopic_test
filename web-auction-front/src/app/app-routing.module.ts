@@ -6,8 +6,9 @@ const routes: Routes = [
   {path: 'auction', loadChildren: () => import('./auctions/auctions.module').then(m => m.AuctionsModule)},
   {
     path: 'login', component: LoginComponent
-  }
-  ];
+  },
+  {path: '', pathMatch: 'full', redirectTo: 'auction'}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
