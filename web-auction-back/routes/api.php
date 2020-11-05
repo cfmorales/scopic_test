@@ -20,3 +20,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('user','UserConstroller@user')->middleware('auth:api');
 Route::get('all_articles','ArticleController@getAll')->middleware('auth:api');
+Route::post('view_article/{id}','ArticleController@viewArticle')->middleware('auth:api');
+Route::post('save_bid','UserAuctionController@saveBid')->middleware('auth:api');
+

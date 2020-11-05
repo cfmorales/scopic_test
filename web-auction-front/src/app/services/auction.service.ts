@@ -15,14 +15,23 @@ export class AuctionService {
     client_secret: '6BcUk3AqDkaFWk6kQdbygNte0CGYmfD0vsYnpUgy',
     scope: '*'
   };
+  headers = {Authorization: `Bearer ${localStorage.getItem('token')}`};
 
   constructor(private httpClient: HttpClient) {
   }
 
   getAll(): Observable<Articles[]> {
-    const headers = {Authorization: `Bearer ${localStorage.getItem('token')}`};
-    return this.httpClient.get<Articles[]>(environment.apiUrl + 'all_articles', {headers});
+    return this.httpClient.get<Articles[]>(environment.apiUrl + 'all_articles', {headers: this.headers});
   }
 
+  getById(id): Observable<any> {
+    return this.httpClient.post<any>(environment.apiUrl + 'view_article/' + id, this.serverInfo, {headers: this.headers});
+  }
+
+  saveBid(resource) {
+    return this.httpClient.post(environment.apiUrl + 'save_bid', {
+      ...resource, ...this.serverInfo
+    }, {headers: this.headers});
+  }
 
 }

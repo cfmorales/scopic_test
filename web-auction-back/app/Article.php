@@ -9,4 +9,9 @@ class Article extends Model
 {
     //
     use SoftDeletes;
+
+    public function bids()
+    {
+        return $this->hasMany('App\UserAuction');
+    }
 }

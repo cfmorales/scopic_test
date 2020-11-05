@@ -1,7 +1,8 @@
 <div class="row">
+
   <div class="col-md-4" *ngFor="let auct of auctions | paginate:{
   id: 'auctions_pagination',
-  itemsPerPage: 1,
+  itemsPerPage: 3,
   currentPage: page,
   totalItems: totalRecord
   }">
@@ -10,12 +11,16 @@
       <div class="card-body">
         <p class="card-text">{{auct.description}}</p>
         <div class="d-flex">
-          <button type="button" class="btn btn-block btn-outline-secondary">Bid Now</button>
+          <a type="button" [routerLink]="['view-auction/',auct.id]" class="btn btn-block btn-outline-secondary">Bid
+            Now</a>
         </div>
       </div>
     </div>
   </div>
-  <div>
+
+</div>
+<div class="row">
+  <div class="text-center col-md-12">
     <pagination-controls id="auctions_pagination" maxSize="5" directionLinks="true"
                          (pageChange)="page = $event"></pagination-controls>
   </div>

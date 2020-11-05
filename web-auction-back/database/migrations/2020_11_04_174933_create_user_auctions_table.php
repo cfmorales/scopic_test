@@ -17,6 +17,7 @@ class CreateUserAuctionsTable extends Migration
             $table->id();
             $table->float('bid', 8, 2);
             $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('article_id')->constrained('articles');
             $table->timestamps();
         });
     }

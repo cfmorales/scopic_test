@@ -11,7 +11,6 @@ const routes: Routes = [
   {
     path: '',
     component: AuctionsComponent,
-    canActivate: [AuthenticatedGuard],
     children: [
       {path: '', component: ViewAllAuctionsComponent},
       {path: 'name', pathMatch: 'full', component: ViewAllByNameComponent},
