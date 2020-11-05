@@ -23,4 +23,6 @@ Route::get('all_items','ItemController@getAll')->middleware('auth:api');
 Route::post('view_item/{id}','ItemController@viewItem')->middleware('auth:api');
 Route::post('save_bid','UserAuctionController@saveBid')->middleware('auth:api');
 Route::post('is_authorized','UserConstroller@isAuthorized')->middleware('auth:api');
-
+Route::post('item/create','ItemController@store')->middleware('auth:api');
+Route::post('item/update','ItemController@update')->middleware('auth:api');
+Route::post('item/delete','ItemController@delete')->middleware('auth:api');

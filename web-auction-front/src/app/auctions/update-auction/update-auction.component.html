@@ -1,1 +1,15 @@
-<p>update-auction works!</p>
+<div *ngIf="!createForm.valid" class="alert alert-warning mt-2" role="alert">
+  Please provide the right information
+</div>
+<div *ngIf="status" [className]="statusClass" class="" role="alert">
+  {{message}}
+</div>
+<div class="card">
+  <div class="card-header card-title">
+    Update an auction
+  </div>
+  <div class="card-body">
+    <app-form-auction [typeForm]="'Update Item'" [createForm]="createForm"
+                      (newItemEvent)="updateProduct($event)"></app-form-auction>
+  </div>
+</div>

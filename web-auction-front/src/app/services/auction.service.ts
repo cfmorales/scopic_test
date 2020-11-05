@@ -34,4 +34,21 @@ export class AuctionService {
     }, {headers: this.headers});
   }
 
+  createItem(resource) {
+    return this.httpClient.post(environment.apiUrl + 'item/create', {
+      ...resource, ...this.serverInfo
+    }, {headers: this.headers});
+  }
+
+  updateItem(resource) {
+    return this.httpClient.post(environment.apiUrl + 'item/update', {
+      ...resource, ...this.serverInfo
+    }, {headers: this.headers});
+  }
+
+  delete(resource) {
+    return this.httpClient.post(environment.apiUrl + 'item/delete', {
+      ...resource, ...this.serverInfo
+    }, {headers: this.headers});
+  }
 }

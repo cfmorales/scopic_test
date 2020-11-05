@@ -19,17 +19,12 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  view(id: number) {
-    console.log(id);
-  }
-
-  edit(id: number) {
-    console.log(id);
-
-  }
-
   delete(id: number) {
-    console.log(id);
+    this.auctionService.delete({itemId: id}).subscribe(res => {
+        this.listItems = this.listItems.filter(item => item.id !== id);
+      },
+      error => {
+      });
 
   }
 }

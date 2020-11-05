@@ -14,7 +14,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of listItems">
+        <tr *ngFor="let item of listItems; let index">
           <th scope="row">{{item.id}}</th>
           <td>{{item.name}}</td>
           <td>{{item.description}}</td>
@@ -22,10 +22,10 @@
             <button class="btn btn-sm btn-light" [routerLink]="['/auction/view-auction/',item.id]">View</button>
           </td>
           <td>
-            <button class="btn btn-sm btn-warning" (click)="edit(item.id)">Edit</button>
+            <button class="btn btn-sm btn-warning" [routerLink]="['/auction/update/',item.id]">Edit</button>
           </td>
           <td>
-            <button class="btn btn-sm btn-danger" (click)="delete(item.id)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="delete(item.id)">Delete</button>
           </td>
         </tr>
         </tbody>

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuctionService} from '../../services/auction.service';
 
 @Component({
   selector: 'app-create-auction',
@@ -8,13 +9,16 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class CreateAuctionComponent implements OnInit {
   createForm: FormGroup;
-
-  constructor(private fb: FormBuilder) {
+  message = '';
+  status = false;
+  statusClass = '';
+  constructor(private fb: FormBuilder, private auctionService: AuctionService) {
     this.createForm = fb.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      date_end: ['', Validators.required],
-      image_url: ['', Validators.required],
+      auction_end: ['', Validators.required],
+      image_url: ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
+
     });
   }
 
@@ -23,7 +27,19 @@ export class CreateAuctionComponent implements OnInit {
 
   createProduct(form: any): void {
 
-    const {title, price, description, category} = form;
-    console.log(form.value);
+    const {name, description, auction_end, image_url} = form;
+    this.auctionService.createItem({name, description, auction_end, image_url})
+      .subscribe(res => {
+          this.status = true;
+          this.message = 'This auction Item was saved successfully';
+          this.statusClass = 'alert alert-success mt-2';
+          this.createForm.reset();
+        },
+      error => {
+        this.status = true;
+        this.message = 'Something went wrong check server connection';
+        this.statusClass = 'alert alert-danger mt-2';
+      });
+
   }
 }
