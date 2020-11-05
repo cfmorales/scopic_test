@@ -12,4 +12,9 @@ class UserConstroller extends Controller
     {
         return $request->user();
     }
+
+    public function isAuthorized(Request $request)
+    {
+        return $request->user()->is_admin ? true : false;
+    }
 }

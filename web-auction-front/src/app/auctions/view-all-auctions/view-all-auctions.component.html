@@ -2,7 +2,7 @@
 
   <div class="col-md-4" *ngFor="let auct of auctions | paginate:{
   id: 'auctions_pagination',
-  itemsPerPage: 3,
+  itemsPerPage: 10,
   currentPage: page,
   totalItems: totalRecord
   }">

@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-
+  status = false;
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
     this.loginForm = fb.group({
       email: ['', [Validators.email, Validators.required]],
@@ -19,19 +19,17 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
+
   login() {
     const data = {username: this.loginForm.value.email, password: this.loginForm.value.password};
     this.userService.login(data).subscribe(
       res => {
         localStorage.setItem('token', res.access_token);
-        console.log(res);
         this.router.navigate(['/']);
       },
-      error => {//todo depurar error
-        console.log('Error ');
-        console.log(error);
+      error => {
+       this.status = true;
       });
   }
 }

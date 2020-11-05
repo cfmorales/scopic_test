@@ -8,13 +8,13 @@ class UserAuction extends Model
 {
     //
 
-    public function article()
+    public function item()
     {
-        return $this->belongsTo('App\Article');
+        return $this->belongsTo('App\Item');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\Article');
+        return $this->belongsTo('App\User');
     }
 }

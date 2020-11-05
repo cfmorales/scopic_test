@@ -1,1 +1,9 @@
-<p>create-auction works!</p>
+<div class="card">
+  <div class="card-header card-title">
+    Create an auction
+  </div>
+  <div class="card-body">
+    <app-form-auction [typeForm]="'Create Product'" [createForm]="createForm"
+                      (newItemEvent)="createProduct($event)"></app-form-auction>
+  </div>
+</div>

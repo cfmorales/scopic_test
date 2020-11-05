@@ -12,6 +12,7 @@ import {ViewAuctionComponent} from './view-auction/view-auction.component';
 import {ViewAllAuctionsComponent} from './view-all-auctions/view-all-auctions.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {ReactiveFormsModule} from '@angular/forms';
+import { FormAuctionComponent } from './form-auction/form-auction.component';
 
 
 
@@ -23,7 +24,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     ViewAllByNameComponent,
     ViewAllByDescriptionComponent,
     ViewAuctionComponent,
-    ViewAllAuctionsComponent],
+    ViewAllAuctionsComponent,
+    FormAuctionComponent],
   imports: [
     CommonModule,
     AuctionsRoutingModule,

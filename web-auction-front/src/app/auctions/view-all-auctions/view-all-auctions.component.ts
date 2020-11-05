@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuctionService} from '../../services/auction.service';
-import {Articles} from '../../interfaces/articles';
+import {Items} from '../../interfaces/items';
 
 @Component({
   selector: 'app-view-all-auctions',
@@ -8,7 +8,7 @@ import {Articles} from '../../interfaces/articles';
   styleUrls: ['./view-all-auctions.component.scss']
 })
 export class ViewAllAuctionsComponent implements OnInit {
-  auctions: Articles[];
+  auctions: Items[];
   totalRecord: number;
   page: number;
 

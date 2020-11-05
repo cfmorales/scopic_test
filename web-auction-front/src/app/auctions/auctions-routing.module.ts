@@ -6,6 +6,8 @@ import {ViewAllByNameComponent} from './view-all-by-name/view-all-by-name.compon
 import {ViewAllByDescriptionComponent} from './view-all-by-description/view-all-by-description.component';
 import {ViewAuctionComponent} from './view-auction/view-auction.component';
 import {AuthenticatedGuard} from '../guards/authenticated.guard';
+import {CreateAuctionComponent} from './create-auction/create-auction.component';
+import {AdminGuard} from '../guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -15,6 +17,8 @@ const routes: Routes = [
       {path: '', component: ViewAllAuctionsComponent},
       {path: 'name', pathMatch: 'full', component: ViewAllByNameComponent},
       {path: 'description', pathMatch: 'full', component: ViewAllByDescriptionComponent},
+      {path: 'create', pathMatch: 'full', component: CreateAuctionComponent, canActivate: [AdminGuard]},
+
 
     ]
   },

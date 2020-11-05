@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,10 @@ export class UserService {
   serverInfo = {
     grant_type: 'password',
     client_id: 2,
-    client_secret: '6BcUk3AqDkaFWk6kQdbygNte0CGYmfD0vsYnpUgy',
+    client_secret: '7R5Ahiv2xteJB0XKZ3N8RPYDG17VQbN9TNOLRvCg',
     scope: '*'
   };
+  headers = {Authorization: `Bearer ${localStorage.getItem('token')}`};
 
   login(resource): any {
     return this.httpClient.post(environment.apiUrl + 'oauth/token', {
@@ -24,9 +26,23 @@ export class UserService {
   }
 
   getUser(): any {
-    const headers = {Authorization: `Bearer ${localStorage.getItem('token')}`};
     return this.httpClient.get(environment.apiUrl + 'user', {
-      headers
+      headers: this.headers
     });
   }
+
+  isAuthorized(): Observable<any> {
+    return this.httpClient.post(environment.apiUrl + 'is_authorized', this.serverInfo, {
+      headers: this.headers
+    });
+  }
+
+  removeToken() {
+    return localStorage.removeItem('token');
+  }
+
+  isLogued() {
+    return localStorage.getItem('token');
+  }
 }
+

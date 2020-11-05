@@ -20,7 +20,7 @@ class UserAuctionController extends Controller
             $auction = new UserAuction();
             $auction->bid = $request->bid;
             $auction->user_id = $request->user()->id;
-            $auction->article_id = $request->article_id;
+            $auction->item_id = $request->item_id;
             $auction->save();
             return $auction;
         }

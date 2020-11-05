@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuctionService} from '../../services/auction.service';
-import {Articles} from '../../interfaces/articles';
+import {Items} from '../../interfaces/items';
 import {ActivatedRoute} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
@@ -11,21 +11,23 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class ViewAuctionComponent implements OnInit {
 
-  article: Articles;
-  articleId: number;
+  item: Items;
+  itemId: number;
   auctionForm: FormGroup;
   userAuction: any;
   message = '';
   status = false;
   statusClass = '';
+  bidHistory: any;
 
   constructor(private auctionService: AuctionService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe(res => this.articleId = res.id); // get url params
-    this.auctionService.getById(this.articleId).subscribe(res => {
-      this.article = res.article;
+    this.activatedRoute.params.subscribe(res => this.itemId = res.id); // get url params
+    this.auctionService.getById(this.itemId).subscribe(res => {
+      this.item = res.item;
+      this.bidHistory = res.history;
       res.user_auction ? this.userAuction = res.user_auction : this.userAuction = null;
       const bidValue = this.userAuction ? this.userAuction.bid + 1 : 1;
       this.auctionForm = new FormGroup({
@@ -41,12 +43,12 @@ export class ViewAuctionComponent implements OnInit {
   }
 
   saveBid() {
-    const data = {bid: this.auctionForm.value.bid, article_id: this.articleId};
+    const data = {bid: this.auctionForm.value.bid, item_id: this.itemId};
     console.log(data);
     this.auctionService.saveBid(data).subscribe(
       res => {
         this.status = true;
-        this.message = 'Your bid was saved and for now you cant make another bid';
+        this.message = 'Your bid was saved and for now you can\'t make another one';
         this.statusClass = 'alert alert-success mt-2';
         this.auctionForm.disable();
       },
