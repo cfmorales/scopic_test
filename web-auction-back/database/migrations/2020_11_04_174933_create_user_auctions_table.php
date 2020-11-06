@@ -15,7 +15,7 @@ class CreateUserAuctionsTable extends Migration
     {
         Schema::create('user_auctions', function (Blueprint $table) {
             $table->id();
-            $table->float('bid', 8, 2);
+            $table->float('bid', 11, 2);
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('item_id')->constrained('items');
             $table->timestamps();

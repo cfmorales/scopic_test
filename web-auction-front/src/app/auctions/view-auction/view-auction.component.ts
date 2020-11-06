@@ -19,7 +19,7 @@ export class ViewAuctionComponent implements OnInit {
   status = false;
   statusClass = '';
   bidHistory: any;
-
+  bidValue: number;
   constructor(private auctionService: AuctionService, private activatedRoute: ActivatedRoute) {
   }
 
@@ -29,9 +29,9 @@ export class ViewAuctionComponent implements OnInit {
       this.item = res.item;
       this.bidHistory = res.history;
       res.user_auction ? this.userAuction = res.user_auction : this.userAuction = null;
-      const bidValue = this.userAuction ? this.userAuction.bid + 1 : 1;
+      this.bidValue = this.userAuction ? this.userAuction.bid + 1 : 1;
       this.auctionForm = new FormGroup({
-        bid: new FormControl(bidValue, [Validators.required, Validators.min(bidValue)])
+        bid: new FormControl(this.bidValue, [Validators.required, Validators.min(this.bidValue)])
       });
       if (!res.can_bid) {
         this.status = true;

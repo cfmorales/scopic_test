@@ -1,6 +1,6 @@
 <div *ngIf="item">
   <div *ngIf="!auctionForm.valid && !auctionForm.disabled" class="alert alert-warning mt-2" role="alert">
-    Please provide the correct amount of money
+    Please provide a greater amount than {{bidValue}}
   </div>
   <div *ngIf="status" [className]="statusClass" class="" role="alert">
     {{message}}
@@ -32,7 +32,7 @@
               </div>
             </div>
             <button type="submit" class="btn btn-outline-info" [disabled]="!auctionForm.valid" (click)="saveBid()">
-              Submit
+              Submit Bid
             </button>
           </form>
         </div>
