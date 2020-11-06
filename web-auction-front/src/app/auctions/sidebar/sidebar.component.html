@@ -1,19 +1,18 @@
-<section class="filters">
-  <!-- Section: Condition -->
-  <section class="mb-4">
-    <h5 class="font-weight-bold mb-3">Filters</h5>
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Search by name" >
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary btn-sm" type="button">Search</button>
+<section class="mb-4">
+  <h5 class="font-weight-bold mb-3">Filters</h5>
+  <form class="form-signin" [formGroup]="sideForm">
+    <div class="row ">
+      <div class="col-md-10">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search by name" formControlName="name">
+        </div>
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search by description" formControlName="description">
+        </div>
+        <button class="btn btn-outline-secondary btn-block" type="button" (click)="search()">Search</button>
       </div>
     </div>
-    <div class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Search by description" >
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary btn-sm" type="button">Search</button>
-      </div>
-    </div>
-  </section>
-  <!-- Section: Condition -->
-  </section>
+
+  </form>
+</section>
+

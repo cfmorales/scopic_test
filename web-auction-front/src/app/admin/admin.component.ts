@@ -14,7 +14,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.auctionService.getAll().subscribe(res => {
+    this.auctionService.getAll({}).subscribe(res => {
       this.listItems = res;
     });
   }

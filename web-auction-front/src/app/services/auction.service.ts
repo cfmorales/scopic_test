@@ -20,8 +20,8 @@ export class AuctionService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getAll(): Observable<Items[]> {
-    return this.httpClient.get<Items[]>(environment.apiUrl + 'all_items', {headers: this.headers});
+  getAll(params): Observable<Items[]> {
+    return this.httpClient.get<Items[]>(environment.apiUrl + 'all_items', {headers: this.headers, params});
   }
 
   getById(id): Observable<any> {

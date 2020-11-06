@@ -10,9 +10,18 @@ use Illuminate\Http\Request;
 class ItemController extends Controller
 {
 
-    public function getAll()
+    public function getAll(Request $request)
     {
-        return Item::all();
+        if (isset($request->name) && isset($request->description)) {
+            return Item::where([['description', 'LIKE', '%' . $request->description . '%'],['name', 'LIKE', '%' . $request->name . '%']])
+                ->get();
+        } else if (isset($request->description)) {
+            return Item::where('description', 'LIKE', '%' . $request->description . '%')->get();
+        } else if (isset($request->name)) {
+            return Item::where('name', 'LIKE', '%' . $request->name . '%')->get();
+        } else {
+            return Item::all();
+        }
     }
 
     public function viewItem($id, Request $request)
