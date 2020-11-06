@@ -36,12 +36,18 @@ export class ViewAuctionComponent implements OnInit {
         bid: new FormControl(this.bidValue, [Validators.required, Validators.min(this.bidValue)])
       });
       if (!res.can_bid) {
-        this.status = true;
-        this.message = 'Your bid was the last one, please wait for another offer';
-        this.statusClass = 'alert alert-danger mt-2';
+        this.sendMessage(true, 'Your bid was the last one, please wait for another offer', 'danger');
         this.auctionForm.disable();
       }
+      this.checkExpired();
     });
+  }
+
+  private checkExpired() {
+    if (this.timeLeft[0] === 0 && this.timeLeft[1] === 0) {
+      this.sendMessage(true, 'This auction is expired', 'danger');
+      this.auctionForm.disable();
+    }
   }
 
   saveBid() {
@@ -49,16 +55,17 @@ export class ViewAuctionComponent implements OnInit {
     console.log(data);
     this.auctionService.saveBid(data).subscribe(
       res => {
-        this.status = true;
-        this.message = 'Your bid was saved and for now you can\'t make another one';
-        this.statusClass = 'alert alert-success mt-2';
+        this.sendMessage(true, 'Your bid was saved and for now you can\'t make another one', 'success');
         this.auctionForm.disable();
       },
       error => {
-        this.status = true;
-        this.message = 'There is an error with this request';
-        this.statusClass = 'alert alert-danger mt-2';
+        this.sendMessage(true, 'There is an error with this request', 'danger');
       });
   }
 
+  private sendMessage(status, message, classType): void {
+    this.status = status;
+    this.message = message;
+    this.statusClass = 'alert alert-' + classType + ' mt-2';
+  }
 }

@@ -10,6 +10,9 @@
       <img class="card-img-top" alt="{{auct.name}}" src="{{auct.image_url}}" data-holder-rendered="true">
       <div class="card-body">
         <span class="font-weight-bold">{{auct.name}}</span>
+        <p *ngIf="auct.bids[0]; else price">Price: {{auct.bids[0].bid}}</p>
+        <ng-template #price><p>Price: no bids yet</p>
+        </ng-template>
         <p class="card-text text-truncate">{{auct.description}}</p>
         <div class="d-flex">
           <a type="button" [routerLink]="['view-auction/',auct.id]" class="btn btn-block btn-outline-secondary">Bid

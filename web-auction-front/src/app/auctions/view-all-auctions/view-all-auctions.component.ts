@@ -30,6 +30,7 @@ export class ViewAllAuctionsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(res => this.queryParams = res);
     this.auctionService.getAll(this.queryParams).subscribe(res => {
+
       this.auctions = res;
       this.totalRecord = res.length;
     });

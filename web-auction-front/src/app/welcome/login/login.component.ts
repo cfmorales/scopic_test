@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
     this.loginForm = fb.group({
-      email: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(4)]]
     });
   }
 
@@ -27,6 +27,11 @@ export class LoginComponent implements OnInit {
     this.userService.login(data).subscribe(
       res => {
         localStorage.setItem('token', res.access_token);
+        if (data.username === 'admin') {
+          localStorage.setItem('is_admin', '1');
+        }else{
+          localStorage.setItem('is_admin', '0');
+        }
         this.router.navigate(['/']);
       },
       error => {
