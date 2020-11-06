@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -13,9 +14,9 @@ class UsersTableSeeder extends Seeder
     {
         //
         \App\User::create([
-            'name' => 'test1',
-            'email' => 'test1@test.com',
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'name' => 'user',
+            'email' => 'user@user.com',
+            'password' => Hash::make('user'),
             'is_admin'=>0,
             'remember_token' => Str::random(10),
         ]);
@@ -33,7 +34,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'admin',
                 'email' => 'admin@admin.com',
-                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                'password' => Hash::make('admin'), // password
                 'is_admin'=>1,
                 'remember_token' => Str::random(10),
             ]

@@ -42,4 +42,8 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\UserAuction');
     }
+
+    public function findForPassport($identifier) {
+        return $this->orWhere('email', $identifier)->orWhere('name', $identifier)->first();
+    }
 }

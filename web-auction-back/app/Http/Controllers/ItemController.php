@@ -13,16 +13,13 @@ class ItemController extends Controller
 
     public function getAll(Request $request)
     {
-        if (isset($request->name) && isset($request->description)) {
-            return Item::where([['description', 'LIKE', '%' . $request->description . '%'], ['name', 'LIKE', '%' . $request->name . '%']])
-                ->get();
-        } else if (isset($request->description)) {
-            return Item::where('description', 'LIKE', '%' . $request->description . '%')->get();
-        } else if (isset($request->name)) {
-            return Item::where('name', 'LIKE', '%' . $request->name . '%')->get();
-        } else {
-            return Item::all();
-        }
+        $item= Item::where([
+            ['description', 'LIKE', '%' . $request->description . '%'],
+            ['name', 'LIKE', '%' . $request->name . '%']])->with(['bids' => function ($query) {
+            $query->latest();
+        }])->get();
+        return $item->toArray();
+
     }
 
     public function viewItem($id, Request $request)
@@ -56,10 +53,14 @@ class ItemController extends Controller
 
         if ($date_now->lessThan($date_end)) {
             $diff_days = $date_now->diffInDays($date_end);
-            $seconds_left = $date_end->secondsUntilEndOfDay();
+            if ($diff_days == 0) {
+                $seconds_left = sizeof($date_now->secondsUntil($date_end));
+            } else {
+                $seconds_left = $date_end->secondsUntilEndOfDay();
+            }
             return [$diff_days, $seconds_left];
         } else {
-            return [0, sizeof($date_end->secondsUntil($date_now))];
+            return [0, 0];
         }
     }
 

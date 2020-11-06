@@ -13,8 +13,8 @@ export class AdminGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    const isAdmin = localStorage.getItem('is_admin');
-    if (isAdmin === '1') {
+
+    if (this.userService.isAdmin()) {
       return true;
     }else{
       this.router.navigate(['/auction']);
