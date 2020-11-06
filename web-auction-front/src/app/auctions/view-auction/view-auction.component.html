@@ -19,7 +19,12 @@
 
           <h5>This auction will end at:
             {{item.auction_end}}
+
           </h5>
+          <p class="pt-1">
+            Days left: {{timeLeft[0]}}, with
+            <countdown [config]="{leftTime: timeLeft[1]}"></countdown>
+          </p>
           <p class="pt-1">
             Description: {{item.description}}
           </p>

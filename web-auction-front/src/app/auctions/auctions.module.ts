@@ -11,7 +11,7 @@ import {ViewAllAuctionsComponent} from './view-all-auctions/view-all-auctions.co
 import {NgxPaginationModule} from 'ngx-pagination';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FormAuctionComponent } from './form-auction/form-auction.component';
-
+import { CountdownModule } from 'ngx-countdown';
 
 
 @NgModule({
@@ -26,7 +26,8 @@ import { FormAuctionComponent } from './form-auction/form-auction.component';
     CommonModule,
     AuctionsRoutingModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CountdownModule
   ]
 })
 export class AuctionsModule {
