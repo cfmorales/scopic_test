@@ -37,12 +37,21 @@ export class UserService {
     });
   }
 
-  removeToken() {
-    return localStorage.removeItem('token');
+  removeToken(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('is_admin');
   }
 
   isLogued() {
-    return localStorage.getItem('token');
+    return !!localStorage.getItem('token');
+  }
+
+  isAdmin() {
+    if (localStorage.getItem('is_admin') === '1') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 

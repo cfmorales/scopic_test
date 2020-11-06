@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-auctions',
@@ -12,7 +13,7 @@ export class AuctionsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // console.log(this.auctions)
+
   }
 
 }

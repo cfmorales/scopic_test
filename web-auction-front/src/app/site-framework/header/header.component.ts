@@ -8,26 +8,27 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  mySubscription: any;
-
   isLogued: any;
-  isAuthorized: any;
 
   constructor(private userService: UserService, private router: Router) {
 
   }
 
-
   ngOnInit(): void {
-
-    this.isLogued = this.userService.isLogued();
-
   }
-
 
   logout() {
     this.userService.removeToken();
     this.isLogued = false;
     this.router.navigate(['/login']);
+  }
+
+  get hasAccess() {
+    return this.userService.isLogued();
+  }
+
+  get isAdmin() {
+    return this.userService.isAdmin();
+
   }
 }

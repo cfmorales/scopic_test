@@ -11,6 +11,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   status = false;
+
   constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
     this.loginForm = fb.group({
       email: ['', [Validators.email, Validators.required]],
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/']);
       },
       error => {
-       this.status = true;
+        this.status = true;
       });
+
   }
 }
