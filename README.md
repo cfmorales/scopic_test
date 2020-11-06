@@ -20,7 +20,7 @@ This is the link for the Git repository of where the front-end and back-end of t
 - In the console write the command: php artisan migrate --seed
 - After running the previous command, write a new command: php artisan serve
 - Take into account that after using the previous command we have configured a virtual server that uses by default this URL: http://127.0.0.1:8000 if you use another type of virtual host, then you have to change the URL in the front end code.
-
+- Do not close this console
 
 ## Setup and configure the Front End virtual server (requirements and steps)
 
@@ -29,12 +29,14 @@ This is the link for the Git repository of where the front-end and back-end of t
 - Open a console in the directory of where the frontend code is located: ./web-auction-front
 - In the console, write the command: npm install
 - If the URL of your virtual server is different than http://127.0.0.1:8000 , change it in one of the application’s variables
-- Go to the directory: ./web-auction-front/src/environments/enviroment.ts
+  - Go to the directory: ./web-auction-front/src/environments/enviroment.ts
   - Change the apiUrl to yours
   - Take into account the final slash ”/”, http://127.0.0.1:8000/, this has to be part of the URL
- - In the console, write the command: npm run start
- - After the previous command, the virtual host for the front end will be configured. Go to URL http://localhost:4200/ , this will be the URL where we can test the application
-
+- In the console, write the command: npm run start
+  - If this does not work run in the console npm install -g @angular/cli 
+  - After the previous command run ng serve --open
+- After the previous command, the virtual host for the front end will be configured. Go to URL http://localhost:4200/ , this will be the URL where we can test the application
+- Do not close this console
 ## Application
 
  - CREDENTIALS:
