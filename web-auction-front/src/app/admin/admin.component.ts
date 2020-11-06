@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Items} from '../interfaces/items';
 import {AuctionService} from '../services/auction.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-admin',
@@ -9,8 +10,12 @@ import {AuctionService} from '../services/auction.service';
 })
 export class AdminComponent implements OnInit {
   listItems: Items[];
+  adminSearchForm: FormGroup;
 
-  constructor(private auctionService: AuctionService) {
+  constructor(private auctionService: AuctionService, private fb: FormBuilder) {
+    this.adminSearchForm = this.fb.group({
+      name: ''
+    });
   }
 
   ngOnInit(): void {
@@ -25,6 +30,9 @@ export class AdminComponent implements OnInit {
       },
       error => {
       });
+  }
 
+  adminSearch() {
+    this.auctionService.getAll(this.adminSearchForm.value).subscribe(res => this.listItems = res);
   }
 }
