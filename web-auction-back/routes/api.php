@@ -26,3 +26,5 @@ Route::post('is_authorized','UserConstroller@isAuthorized')->middleware('auth:ap
 Route::post('item/create','ItemController@store')->middleware('auth:api');
 Route::post('item/update','ItemController@update')->middleware('auth:api');
 Route::post('item/delete','ItemController@delete')->middleware('auth:api');
+Route::get('user/bids','UserConstroller@getBidsHistory')->middleware('auth:api');
+

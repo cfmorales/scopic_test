@@ -10,20 +10,22 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SiteFrameworkModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    NgxPaginationModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        SiteFrameworkModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        NgxPaginationModule
+    ],
+    providers: [],
+    exports: []
+    ,
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

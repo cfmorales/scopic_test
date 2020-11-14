@@ -19,7 +19,10 @@
         </div>
       </li>
     </ul>
-
-    <button class="btn btn-outline-dark my-2 my-sm-0" type="button" (click)="logout()" *ngIf="hasAccess">Logout</button>
+    <div class="btn-group" role="group">
+      <button class="btn btn-light my-2 my-sm-0 mr-2" type="button" *ngIf="hasAccess" [routerLink]="['/costumer']">Profile</button>
+      <button class="btn btn-outline-dark my-2 my-sm-0" type="button" (click)="logout()" *ngIf="hasAccess">Logout
+      </button>
+    </div>
   </div>
 </nav>

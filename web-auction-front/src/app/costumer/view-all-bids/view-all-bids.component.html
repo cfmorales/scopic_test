@@ -1,0 +1,34 @@
+<div class="card-body">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Item ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Bids</th>
+        <th scope="col">State</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of listItems">
+        <td>{{item.key}}</td>
+        <td>{{item.value.item.name}}</td>
+        <td>{{item.value.item.description}}</td>
+        <td>
+          <p *ngFor="let bids of item.value.bids">
+            {{bids.bid}}
+          </p>
+        </td>
+        <td>
+          <div [ngSwitch]="item.value.state">
+            <span *ngSwitchCase="'Won'" class="badge badge-success">Won</span>
+            <span *ngSwitchCase="'In progress'" class="badge badge-info">In Progress</span>
+            <span *ngSwitchCase="'Lost'" class="badge badge-dark">Lost</span>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
