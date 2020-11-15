@@ -18,13 +18,18 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::get('user','UserConstroller@user')->middleware('auth:api');
-Route::get('all_items','ItemController@getAll')->middleware('auth:api');
-Route::post('view_item/{id}','ItemController@viewItem')->middleware('auth:api');
-Route::post('save_bid','UserAuctionController@saveBid')->middleware('auth:api');
-Route::post('is_authorized','UserConstroller@isAuthorized')->middleware('auth:api');
-Route::post('item/create','ItemController@store')->middleware('auth:api');
-Route::post('item/update','ItemController@update')->middleware('auth:api');
-Route::post('item/delete','ItemController@delete')->middleware('auth:api');
-Route::get('user/bids','UserConstroller@getBidsHistory')->middleware('auth:api');
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::get('user', 'UserConstroller@user');
+    Route::get('all_items', 'ItemController@getAll');
+    Route::post('view_item/{id}', 'ItemController@viewItem');
+    Route::post('save_bid', 'UserAuctionController@saveBid');
+    Route::post('is_authorized', 'UserConstroller@isAuthorized');
+    Route::post('item/create', 'ItemController@store');
+    Route::post('item/update', 'ItemController@update');
+    Route::post('item/delete', 'ItemController@delete');
+    Route::get('user/bids', 'UserConstroller@getBidsHistory');
+    Route::get('user/awarded_items', 'UserConstroller@getAwardedItems');
+    Route::get('user/awarded_item/{id}', 'UserConstroller@getAwardedItemById');
+
+});
 

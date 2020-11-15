@@ -1,1 +1,26 @@
-<p>view-all-awarded-items works!</p>
+<div class="card-body">
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">Item ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">State</th>
+        <th scope="col">Won At</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of listItems">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.description}}</td>
+        <td><span class="badge badge-success">Won</span></td>
+        <td>{{item.auction_end}}</td>
+        <td><a type="button" class="btn btn-info" [routerLink]="['/costumer/bill/',item.id]">Bill</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

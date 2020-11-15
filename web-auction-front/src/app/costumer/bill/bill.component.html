@@ -1,0 +1,18 @@
+<div class="card" *ngIf="item">
+  <div class="card-header">Congratulations, You've won this item <span class="font-weight-bold"> {{item.name}}</span>
+  </div>
+  <div class="card-body">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="text-center">
+            <img src="{{item.image_url}}" alt="img">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer text-center">
+    <p class="font-weight-normal">Your final bid was <span class="font-weight-bold">{{lastBid}}</span></p>
+  </div>
+</div>

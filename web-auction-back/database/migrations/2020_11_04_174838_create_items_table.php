@@ -19,6 +19,7 @@ class CreateItemsTable extends Migration
             $table->string('description');
             $table->timestamp('auction_end');
             $table->string('image_url');
+            $table->foreignId('item_owner')->nullable()->constrained('users');
             $table->softDeletes('deleted_at', 0);
             $table->timestamps();
         });

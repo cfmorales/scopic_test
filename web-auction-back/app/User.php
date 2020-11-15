@@ -43,7 +43,13 @@ class User extends Authenticatable
         return $this->hasMany('App\UserAuction');
     }
 
+    public function awardedItems()
+    {
+        return $this->hasMany('App\Item','item_owner');
+    }
+
     public function findForPassport($identifier) {
         return $this->orWhere('email', $identifier)->orWhere('name', $identifier)->first();
     }
+
 }
