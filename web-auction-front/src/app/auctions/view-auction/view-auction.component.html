@@ -28,7 +28,7 @@
           <p class="pt-1">
             Description: {{item.description}}
           </p>
-          <form [formGroup]="auctionForm">
+          <form [formGroup]="auctionForm" *ngIf="!itemOwner; else userInfo">
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label class="col-form-label"> Make your bid:
@@ -40,6 +40,16 @@
               Submit Bid
             </button>
           </form>
+          <ng-template #userInfo>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <p class="font-weight-normal">The user
+                  <span class="font-weight-bold">{{itemOwner.name | uppercase}}</span> won this auction</p>
+                <p class="font-weight-normal">The final price was
+                  <span class="font-weight-bold">{{bidHistory[0].bid | currency}}</span></p>
+              </div>
+            </div>
+          </ng-template>
         </div>
       </div>
     </div>

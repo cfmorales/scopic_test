@@ -3,6 +3,7 @@ import {AuctionService} from '../../services/auction.service';
 import {Items} from '../../interfaces/items';
 import {ActivatedRoute} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {User} from '../../interfaces/user';
 
 @Component({
   selector: 'app-view-auction',
@@ -21,6 +22,7 @@ export class ViewAuctionComponent implements OnInit {
   bidHistory: any;
   bidValue: number;
   timeLeft: any;
+  itemOwner: User;
 
   constructor(private auctionService: AuctionService, private activatedRoute: ActivatedRoute) {
   }
@@ -28,10 +30,12 @@ export class ViewAuctionComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(res => this.itemId = res.id); // get url params
     this.auctionService.getById(this.itemId).subscribe(res => {
+      console.log(res);
       this.item = res.item;
       this.bidHistory = res.history;
       this.timeLeft = res.time_left;
       this.bidValue = res.user_auction ? res.user_auction.bid + 1 : 1;
+      this.itemOwner = res.item_owner;
       this.auctionForm = new FormGroup({
         bid: new FormControl(this.bidValue, [Validators.required, Validators.min(this.bidValue)])
       });

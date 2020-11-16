@@ -13,7 +13,7 @@ class ItemController extends Controller
 
     public function getAll(Request $request)
     {
-        $item= Item::where([
+        $item = Item::where([
             ['description', 'LIKE', '%' . $request->description . '%'],
             ['name', 'LIKE', '%' . $request->name . '%']])->with(['bids' => function ($query) {
             $query->latest();
@@ -27,23 +27,26 @@ class ItemController extends Controller
         $last_bid = UserAuction::where('item_id', $id)->orderBy('id', 'desc')->get();
 
         if ($last_bid->first()) {
-            if ($request->user()->id === $last_bid->first()->user_id)
-                return response()->json(['user_auction' => $last_bid->first(),
-                    'item' => $last_bid->first()->item,
+            $response = array('user_auction' => $last_bid->first(),
+                'item' => $last_bid->first()->item,
+                'history' => $last_bid,
+                'time_left' => $this->getTimeDifference($last_bid->first()->item),
+                'item_owner' => $last_bid->first()->item->itemOwner,
+                );
+            if ($request->user()->id === $last_bid->first()->user_id) {
+                return response()->json(array_merge($response,[
                     'can_bid' => false,
-                    'history' => $last_bid,
-                    'time_left' => $this->getTimeDifference($last_bid->first()->item)]);
-            else
-                return response()->json(['user_auction' => $last_bid->first(),
-                    'item' => $last_bid->first()->item,
+                ]));
+            } else {
+                return response()->json(array_merge($response,[
                     'can_bid' => true,
-                    'history' => $last_bid,
-                    'time_left' => $this->getTimeDifference($last_bid->first()->item)]);
+                ]));
+            }
 
         } else
             return response()->json(['user_auction' => null, 'item' => Item::findOrFail($id),
                 'can_bid' => true, 'history' => null,
-                'time_left' => $this->getTimeDifference(Item::findOrFail($id))]);
+                'time_left' => $this->getTimeDifference(Item::findOrFail($id)), 'item_owner' => null]);
     }
 
     private function getTimeDifference($item)
