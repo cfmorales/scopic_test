@@ -33,3 +33,4 @@ Route::group(['middleware' => ['auth:api']], function () {
 
 });
 
+Route::post('register', 'UserConstroller@register');

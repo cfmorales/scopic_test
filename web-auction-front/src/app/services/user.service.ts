@@ -53,5 +53,9 @@ export class UserService {
       return false;
     }
   }
+
+  register(resource){
+    return this.httpClient.post(environment.apiUrl + 'register', resource);
+  }
 }
 

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Item;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserConstroller extends Controller
 {
@@ -56,4 +59,14 @@ class UserConstroller extends Controller
             return [$item, $item->bids->last()->bid];
     }
 
+    public function register(UserRequest $request)
+    {
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+
+        return response(['user' => $user], 200);
+    }
 }

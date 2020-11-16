@@ -1,0 +1,31 @@
+<div *ngIf="status" [className]="statusClass" role="alert">
+  {{messageStatus}}
+</div>
+<div class="container-sm">
+  <form [formGroup]="registerForm" class="form-register">
+    <h2 class="h3 mb-3 font-weight-normal text-center font-weight-bold">User Registration</h2>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="inputfirstName" class="col-form-label">Name/Username</label>
+        <input type="text" class="form-control" id="inputfirstName" placeholder="Name or Username"
+               formControlName="name">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="inputEmail4" class="col-form-label">Email</label>
+        <input type="text" class="form-control" id="inputEmail4" placeholder="Email" formControlName="email">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label for="inputPassword4" class="col-form-label">Password</label>
+        <input type="password" class="form-control" id="inputPassword4" placeholder="Password"
+               formControlName="password">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-lg btn-primary btn-block" [disabled]="!registerForm.valid"
+            (click)="register()">Login
+    </button>
+  </form>
+</div>

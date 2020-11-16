@@ -3,10 +3,14 @@ import {Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from './welcome/login/login.component';
 import {AuthenticatedGuard} from './guards/authenticated.guard';
 import {AdminGuard} from './guards/admin.guard';
+import {RegisterComponent} from './welcome/register/register.component';
 
 const routes: Routes = [
   {
     path: 'login', component: LoginComponent
+  },
+  {
+    path: 'register', component: RegisterComponent
   },
   {
     path: 'auction',
