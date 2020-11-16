@@ -1,3 +1,58 @@
-img{
+h1 {
+  font: bold 100% sans-serif;
+  letter-spacing: 0.5em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* table */
+
+table {
+  font-size: 75%;
+  table-layout: fixed;
+  width: 100%;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 2px;
+}
+
+th, td {
+  border-width: 1px;
+  padding: 0.5em;
+  position: relative;
+  text-align: left;
+}
+
+th, td {
+  border-radius: 0.25em;
+  border-style: solid;
+}
+
+th {
+  background: #bab7b7;
+  border-color: black;
+}
+
+td {
+  border-color: #DDD;
+}
+
+.cont {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  padding: 0.5in;
   width: 70%;
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+}
+
+.cont {
+  background: #FFF;
+  border-radius: 1px;
+  box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.12);
 }

@@ -1,18 +1,52 @@
-<div class="card" *ngIf="item">
-  <div class="card-header">Congratulations, You've won this item <span class="font-weight-bold"> {{item.name}}</span>
-  </div>
-  <div class="card-body">
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="text-center">
-            <img src="{{item.image_url}}" alt="img">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card-footer text-center">
-    <p class="font-weight-normal">Your final bid was <span class="font-weight-bold">{{lastBid}}</span></p>
-  </div>
+<div class="cont" *ngIf="item">
+  <article>
+    <address>
+      <p>Scopic Test Invoice<br> </p>
+    </address>
+    <table class="meta">
+      <tr>
+        <th><span>Invoice</span></th>
+        <td><span>#{{item.id}}</span></td>
+      </tr>
+      <tr>
+        <th><span>Date</span></th>
+        <td><span>{{item.auction_end}}</span></td>
+      </tr>
+      <tr>
+        <th><span>Amount Due</span></th>
+        <td><span>$</span><span>{{lastBid}}</span></td>
+      </tr>
+    </table>
+    <table class="inventory">
+      <thead>
+      <tr>
+        <th><span>Item</span></th>
+        <th><span>Description</span></th>
+        <th><span>Price</span></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td><span>{{item.name}}</span></td>
+        <td><span>{{item.description}}</span></td>
+        <td><span>$</span><span>{{lastBid}}</span></td>
+      </tr>
+
+      </tbody>
+    </table>
+    <table class="balance">
+      <tr>
+        <th><span>Total</span></th>
+        <td><span>$</span><span>{{lastBid}}</span></td>
+      </tr>
+      <tr>
+        <th><span>Amount Paid</span></th>
+        <td><span>$</span><span>0.00</span></td>
+      </tr>
+      <tr>
+        <th><span>Balance Due</span></th>
+        <td><span>$</span><span>{{lastBid}}</span></td>
+      </tr>
+    </table>
+  </article>
 </div>
