@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UserConstroller extends Controller
 {
-    //
 
     public function user(Request $request)
     {
@@ -69,4 +68,5 @@ class UserConstroller extends Controller
 
         return response(['user' => $user], 200);
     }
+
 }

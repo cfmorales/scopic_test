@@ -30,7 +30,7 @@ class ItemsTableSeeder extends Seeder
             \App\Item::create([
                 'name' => $faker->name,
                 'description' => $faker->sentence(10),
-                'auction_end' => \Carbon\Carbon::now()->addDays($i),
+                'auction_end' => \Carbon\Carbon::today()->addDays($i),
                 'image_url' => $images_array[$i],
             ]);
     }
