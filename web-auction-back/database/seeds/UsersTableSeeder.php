@@ -25,7 +25,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'test2',
                 'email' => 'test2@test.com',
-                'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+                'password' => Hash::make('password'), // password
                 'is_admin'=>0,
                 'remember_token' => Str::random(10),
             ]
@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name' => 'admin',
                 'email' => 'admin@admin.com',
-                'password' => Hash::make('admin'), // password
+                'password' => Hash::make('admin'),
                 'is_admin'=>1,
                 'remember_token' => Str::random(10),
             ]

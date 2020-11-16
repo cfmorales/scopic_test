@@ -33,5 +33,14 @@ class ItemsTableSeeder extends Seeder
                 'auction_end' => \Carbon\Carbon::today()->addDays($i),
                 'image_url' => $images_array[$i],
             ]);
+
+        //bids on items
+        for ($i = 1; $i < 4; $i++)
+            \App\UserAuction::create([
+                'bid' => $i * 25,
+                'user_id' => $i,
+                'item_id' => $i,
+
+            ]);
     }
 }
