@@ -1,3 +1,7 @@
+<div *ngIf="status" [className]="statusClass" role="alert">
+  {{messageStatus}}
+</div>
+
 <div class="card-body">
   <div class="table-responsive">
     <table class="table">
@@ -9,6 +13,7 @@
         <th scope="col">State</th>
         <th scope="col">Won At</th>
         <th></th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -19,6 +24,8 @@
         <td><span class="badge badge-success">Won</span></td>
         <td>{{item.auction_end}}</td>
         <td><a type="button" class="btn btn-info" [routerLink]="['/costumer/bill/',item.id]">Bill</a></td>
+        <td><a type="button" class="btn btn-outline-info" (click)="requestEmail(item.id)">Bill via email</a></td>
+
       </tr>
       </tbody>
     </table>

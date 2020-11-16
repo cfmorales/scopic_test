@@ -3,29 +3,31 @@
 namespace App\Mail;
 
 use App\Item;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NewBid extends Mailable
+class ItemBill extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $item;
     public $bid;
+    public $user;
 
     /**
      * Create a new message instance.
      *
-     * @param Item $item
-     * @param $bid
+     * @return void
      */
-    public function __construct(Item $item, $bid)
+    public function __construct(Item $item, $bid, User $user)
     {
         //
         $this->item = $item;
         $this->bid = $bid;
+        $this->user = $user;
     }
 
     /**
@@ -35,6 +37,6 @@ class NewBid extends Mailable
      */
     public function build()
     {
-        return $this->view('newBid');
+        return $this->view('itemBill');
     }
 }

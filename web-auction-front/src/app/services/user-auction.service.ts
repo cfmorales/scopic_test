@@ -30,4 +30,8 @@ export class UserAuctionService {
   getAwardedItemById(id: number): Observable<any> {
     return this.httpClient.get<any>(environment.apiUrl + 'user/awarded_item/' + id, {headers: this.headers});
   }
+
+  requestEmailItemAwarded(id: number): Observable<any> {
+    return this.httpClient.get<any>(environment.apiUrl + 'email/awarded_item/' + id, {headers: this.headers});
+  }
 }
