@@ -28,17 +28,21 @@ export class CreateAuctionComponent implements OnInit {
   createProduct(form: any): void {
 
     const {name, description, auction_end, image_url} = form;
+    this.createForm.disable();
     this.auctionService.createItem({name, description, auction_end, image_url})
       .subscribe(res => {
           this.status = true;
           this.message = 'This auction Item was saved successfully';
           this.statusClass = 'alert alert-success mt-2';
+          this.createForm.enable();
           this.createForm.reset();
         },
       error => {
         this.status = true;
         this.message = 'Something went wrong check server connection';
         this.statusClass = 'alert alert-danger mt-2';
+        this.createForm.enable();
+
       });
 
   }

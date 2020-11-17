@@ -43,7 +43,7 @@ export class UpdateAuctionComponent implements OnInit {
 
   updateProduct(form: any): void {
     const {name, description, auction_end, image_url} = form;
-    console.log(form);
+    this.createForm.disable();
     this.auctionService.updateItem({itemId: this.itemId, name, description, auction_end, image_url})
       .subscribe(res => {
           this.status = true;
@@ -55,6 +55,7 @@ export class UpdateAuctionComponent implements OnInit {
           }, 1500);
         },
         error => {
+          this.createForm.enable();
           this.status = true;
           this.message = 'Something went wrong check server connection';
           this.statusClass = 'alert alert-danger mt-2';

@@ -30,7 +30,6 @@ export class ViewAuctionComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(res => this.itemId = res.id); // get url params
     this.auctionService.getById(this.itemId).subscribe(res => {
-      console.log(res);
       this.item = res.item;
       this.bidHistory = res.history;
       this.timeLeft = res.time_left;
@@ -56,14 +55,15 @@ export class ViewAuctionComponent implements OnInit {
 
   saveBid() {
     const data = {bid: this.auctionForm.value.bid, item_id: this.itemId};
-    console.log(data);
+    this.auctionForm.disable();
     this.auctionService.saveBid(data).subscribe(
       res => {
         this.sendMessage(true, 'Your bid was saved and for now you can\'t make another one', 'success');
-        this.auctionForm.disable();
       },
       error => {
         this.sendMessage(true, 'There is an error with this request', 'danger');
+        this.auctionForm.enable();
+
       });
   }
 
