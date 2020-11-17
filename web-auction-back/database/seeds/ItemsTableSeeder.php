@@ -34,6 +34,15 @@ class ItemsTableSeeder extends Seeder
                 'image_url' => $images_array[$i],
             ]);
 
+
+        for ($i = 1; $i < count($images_array); $i++)
+            \App\UserAuction::create([
+                'bid' => $i * 25,
+                'user_id' => 3,
+                'item_id' => $i,
+
+            ]);
+
         //bids on items
         for ($i = 1; $i < 4; $i++)
             \App\UserAuction::create([
@@ -42,5 +51,11 @@ class ItemsTableSeeder extends Seeder
                 'item_id' => $i,
 
             ]);
+        \App\UserAuction::create([
+            'bid' => 500,
+            'user_id' => 3,
+            'item_id' => 1,
+
+        ]);
     }
 }
