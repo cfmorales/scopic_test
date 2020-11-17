@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuctionService} from '../../services/auction.service';
 import {Items} from '../../interfaces/items';
 import {ActivatedRoute} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../interfaces/user';
+import {interval} from 'rxjs';
+import {startWith, switchMap, takeWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'app-view-auction',
@@ -23,13 +25,26 @@ export class ViewAuctionComponent implements OnInit {
   bidValue: number;
   timeLeft: any;
   itemOwner: User;
+  takenData$: any;
 
   constructor(private auctionService: AuctionService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(res => this.itemId = res.id); // get url params
-    this.auctionService.getById(this.itemId).subscribe(res => {
+    const updateTimer = interval(7000);
+    this.takenData$ = updateTimer.pipe(
+      takeWhile(value => value < 30),
+      startWith(0),
+      switchMap(
+        () => this.auctionService.getById(this.itemId)
+      )
+    );
+    this.getInitialValues();
+  }
+
+  private getInitialValues(): void {
+    this.takenData$.subscribe(res => {
       this.item = res.item;
       this.bidHistory = res.history;
       this.timeLeft = res.time_left;
@@ -41,6 +56,9 @@ export class ViewAuctionComponent implements OnInit {
       if (!res.can_bid) {
         this.sendMessage(true, 'Your bid was the last one, please wait for another offer', 'danger');
         this.auctionForm.disable();
+      } else {
+        this.auctionForm.enable();
+        this.sendMessage(false, 'Your bid was the last one, please wait for another offer', 'danger');
       }
       this.checkExpired();
     });
