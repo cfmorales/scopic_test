@@ -1,5 +1,7 @@
 ## Steps for testing the test project with Docker
 
+I highly recommend to test it without docker, it takes so much time to make a simple consult and it could be a bit annoying
+
 This is the link for the Git repository of where the front-end and back-end of the project is located: https://github.com/cfmorales/scopic_test_docker
 
 - The folder 'vendor' also uploaded in the Laravel project so you may want to zip this folder before you download it
@@ -17,7 +19,7 @@ This is the link for the Git repository of where the front-end and back-end of t
   - docker-compose run php chgrp -R www-data /var/www/html/storage /var/www/html/bootstrap/cache
   - docker-compose run php chmod -R ug+rwx /var/www/html/storage /var/www/html/bootstrap/cache
 - I'm using a cron job to check what auctions are about to expire, so it will send an email, to enable this, type the command docker-compose up -d cron
-  -The server is running in the url http://localhost:8088/
+- The server is running in the url http://localhost:8088/
 
 ## Setup docker for the Front End
 
